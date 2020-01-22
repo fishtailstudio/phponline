@@ -1,0 +1,52 @@
+body {
+    overflow: hidden;
+    background-color: #8F908A;
+}
+#editor {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 49.4%;
+    font-size: 17px;
+}
+.result {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    background-color: #272822;
+    color: white;
+    white-space: pre;
+    font-family: "Consolas";
+    font-size: 17px;
+}
+.runCodeButton {
+    width: 50px;
+    height: 30px;
+    left: 45%;
+    position: fixed;
+    background-color: white;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+.clearCodeButton {
+    width: 50px;
+    height: 30px;
+    left: 45%;
+    top: 45px;
+    position: fixed;
+    background-color: white;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+.runCodeButton:hover,.clearCodeButton:hover {
+    opacity: 0.8;
+}
