@@ -14,7 +14,7 @@ function getCookie(name) {
 }
 //post请求运行结果
 function runCode(code) {
-    $.post("http://localhost/runCode.php", {
+    $.post("http://localhost/phponlie/server/runCode.php", {
         //将代码中的空格替换为|，并进行URLCode编码
         //如果不将空格替换为|将会出现一些错误
         code: encodeURIComponent(code.replace(/ /g, "|"))
