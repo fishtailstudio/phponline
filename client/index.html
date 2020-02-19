@@ -12,11 +12,11 @@
 </head>
 
 <body>
-<xmp id="editor"><?php
-  $str = 'World';
-  echo 'Hello '.$str.PHP_EOL;
-  echo date('Y-m-d H:i:s',time())."\n";
-  echo "PHP版本:".phpversion();
+  <xmp id="editor"><?php
+    $str = 'World';
+    echo "Hello $str\n";
+    echo date('Y-m-d H:i:s').PHP_EOL;
+    echo "PHP版本:".phpversion();
 ?></xmp>
   <textarea class="result" id="result" disabled></textarea>
   <button class="runCodeButton" onclick="runCode(editor.getValue())">运行</button>
@@ -43,8 +43,8 @@
       var cookieCode = getCookie("code");
       //如果存在cookie，则取出并填在编辑器中
       if (cookieCode != undefined && cookieCode != '') {
-        //将取出的cookie进行URLCode解码，并将|替换为空格
-        cookieCode = decodeURIComponent(cookieCode).replace(/\|/g, " ");
+        //将取出的cookie进行URLCode解码，并将`替换为空格
+        cookieCode = decodeURIComponent(cookieCode).replace(/`/g, " ");
         editor.setValue(cookieCode);
         runCode(cookieCode);
       } else {//如果不存在cookie，则运行初始代码
@@ -52,6 +52,15 @@
       }
       //将光标移至末尾
       editor.navigateFileEnd();
+      //监听Ctrl+S命令
+      editor.commands.addCommand({
+        name: 'save',
+        bindKey: {win: 'Ctrl-S', mac: 'Command-S'},
+        exec: function(editor) {
+          download('editor.php',editor.getValue());
+        },
+        readOnly: false // 如果不需要使用只读模式，这里设置false
+      });
     });
   </script>
 </body>

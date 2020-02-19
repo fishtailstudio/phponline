@@ -14,10 +14,11 @@ function getCookie(name) {
 }
 //post请求运行结果
 function runCode(code) {
+    // setCookie('code', code);
     $.post("http://localhost/phponline/server/runCode.php", {
-        //将代码中的空格替换为|，并进行URLCode编码
-        //如果不将空格替换为|将会出现一些错误
-        code: encodeURIComponent(code.replace(/ /g, "|"))
+        //将代码中的空格替换为`，并进行URLCode编码
+        //如果不将空格替换为`将会出现一些错误
+        code: encodeURIComponent(code.replace(/ /g, "`"))
     }, function (res) {
         $("#result").text(res);
     });
@@ -27,4 +28,17 @@ function clearCode() {
     editor.setValue('');
     $("#result").text('');
     setCookie('code', '');
+}
+//下载文件
+function download(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    } else {
+        pom.click();
+    }
 }
